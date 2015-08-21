@@ -1,0 +1,83 @@
+<!doctype html>
+<html ng-app=zooApp>
+    <head>
+        <meta charset="utf-8">
+        <title>Routing</title>
+        <style>
+            body{font-family: cursive;}
+            img{width: 400px;}
+            header{
+                height: 80px;
+                background: #00FF00;
+                text-align: center;
+                line-height: 50px;
+                font-size: 40px;
+            } 
+            ul,li{margin: 0; padding: 0;} 
+            h1{margin-top: 50px;} 
+            li{
+                list-style-type: none;
+                background: #000;
+                float: left;
+                height: 30px;
+                width: 338px;;
+                text-align: center;
+            }
+            li a{
+                color: #fff;
+                text-decoration: none;
+                line-height: 30px;
+            }
+            .menu{}
+            .menu li{
+                width: 100px;
+                background: #666;
+            }
+            
+        </style>
+       	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.1/angular-route.min.js"></script>
+    </head>
+    <body>
+        
+        <div ng-include src=" 'plantillas/encabezado.html' "> </div >
+    <div ng-include src=" 'plantillas/menu.html' "> </div >
+        
+        <h1>Visita el nuevo NG-ZOO</h1>
+        
+        <div ng-view></div>
+        
+        <ul class="menu">
+        </ul>
+        
+        <script>
+            
+            var zoo = angular.module('zooApp', ['ngRoute'])
+            
+            zoo.config([ '$routeProvider' , function($routeProvider){
+                $routeProvider.when('/hola',{
+                    templateUrl:'plantillas/hola.html'
+                }).
+                when('/inicio',{
+                    templateUrl:'plantillas/inicio.html'
+                }).
+                when('/animal',{
+                    templateUrl:'plantillas/animales.html'
+                }).
+                when('/contacto',{
+                    templateUrl:'plantillas/contacto.html'
+                }).
+                when('/horario',{
+                    templateUrl:'plantillas/horario.html'
+                }).
+                otherwise({
+                    redirectTo:'/',
+                    templateUrl:'plantillas/inicio.html'
+                    
+                })
+            
+            }])
+        
+        </script>
+    </body>
+</html>
